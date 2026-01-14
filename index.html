@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Iran – Media Mail (International)</title>
+  <style>
+    :root{
+      --border:#e6e6e6; --bg:#ffffff; --panel:#f7f7f7;
+      --text:#111; --muted:#555; --btn:#111; --btnText:#fff;
+      --btnHover:#2a2a2a; --shadow:0 8px 22px rgba(0,0,0,.08);
+    }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      max-width: 980px; margin: 28px auto; padding: 0 16px;
+      line-height: 1.5; color: var(--text); background: var(--bg);
+    }
+    h1{ margin:0 0 6px; font-size: 28px; }
+    p{ margin: 10px 0; }
+    .sub{ color:var(--muted); margin: 0 0 16px; }
+    .hero{
+      background: var(--panel); border:1px solid var(--border);
+      border-radius: 18px; padding: 18px; box-shadow: var(--shadow);
+    }
+    .box{
+      border:1px solid var(--border); border-radius: 16px; padding: 16px;
+      margin: 14px 0; background:#fff;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 820px){ .grid{ grid-template-columns: 1fr; } }
+    .btn{
+      border-radius: 16px; padding: 14px 14px; text-decoration:none;
+      color: var(--btnText); background: var(--btn);
+      box-shadow: var(--shadow); display:block;
+      border: 1px solid #000;
+      transition: transform .06s ease, background .12s ease;
+      cursor: pointer;
+    }
+    .btn:hover{ background: var(--btnHover); transform: translateY(-1px); }
+    .btn .title{ font-weight: 800; font-size: 16px; margin: 0 0 4px; }
+    .btn .desc{ margin:0; opacity:.9; color: #eee; font-size: 13px; }
+
+    details{ margin-top: 12px; }
+    details > summary{
+      cursor: pointer;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    textarea{
+      width:100%;
+      padding:10px;
+      margin-top: 8px;
+      font-size: 13px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      box-sizing:border-box;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+      resize: vertical;
+    }
+    #subjectBox{ height: 64px; }
+    #bodyBox{ height: 220px; }
+
+    .actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+    button{
+      flex: 1 1 240px; padding: 12px; font-size: 15px; border-radius: 12px;
+      border:1px solid #222; background:#fff; cursor:pointer; text-align:center;
+      color:#111;
+    }
+    button:hover{ background:#f0f0f0; }
+    code{ background:#f2f2f2; padding:2px 6px; border-radius: 6px; }
+    small{ color: var(--muted); }
+  </style>
+</head>
+
+<body>
+  <h1>Iran – Media Mail (International)</h1>
+
+  <p class="sub">
+    This page does <strong>not</strong> send emails automatically. It only opens your email app with recipients,
+    subject, and message pre-filled. You still need to press <strong>Send</strong> yourself.
+    Please <strong>read</strong> the prepared message carefully and make sure it aligns with your views before sending.
+  </p>
+
+  <div class="hero">
+    <div class="box" style="margin-top:0;">
+      <p style="margin:0 0 8px;"><strong>Why this exists</strong></p>
+      <p style="margin:0;">
+        People in Iran are facing severe repression. This tool helps you quickly contact major newsrooms and letters desks
+        in democratic countries so that coverage and public attention increase.
+      </p>
+    </div>
+
+    <div class="box">
+      <p style="margin:0 0 8px;"><strong>How to use (3 steps)</strong></p>
+      <ol style="margin:0; padding-left: 20px;">
+        <li>Click a country button below.</li>
+        <li>Your email client opens with everything pre-filled.</li>
+        <li>Edit the message if you want, then press <strong>Send</strong>.</li>
+      </ol>
+    </div>
+
+    <div class="grid" id="buttons" aria-label="Country buttons"></div>
+  </div>
+
+  <div class="box">
+    <details>
+      <summary>Show copy/paste fallback</summary>
+
+      <p class="sub" style="margin-top:6px;">
+        If anything is missing after you click a button, copy the subject and body from here into your email.
+      </p>
+
+      <label><small>Subject</small></label>
+      <textarea id="subjectBox" readonly></textarea>
+
+      <label><small>Body (English)</small></label>
+      <textarea id="bodyBox" readonly></textarea>
+
+      <div class="actions">
+        <button id="copySubject" type="button">Copy subject</button>
+        <button id="copyBody" type="button">Copy message</button>
+      </div>
+    </details>
+  </div>
+
+  <script>
+    // ====== EDIT THESE TWO ONLY (you said you'll change the text later) ======
+    const SUBJECT = "Urgent: Please cover the situation in Iran (communications blackout & violence)";
+    const BODY = `Dear Editors,
+
+The situation in Iran has reached a critical point. A widespread crackdown is unfolding alongside a near-total communications blackout, deliberately keeping the public in the dark. This urgently requires immediate and sustained media coverage.
+
+Reported death tolls are rising rapidly, yet vary significantly:
+	•	Activist documentation cited by the Associated Press reports at least 2,003 deaths and more than 16,700 detentions.
+	•	An Iranian official told Reuters that around 2,000 people have been killed.
+	•	Some outlets report figures as high as 12,000.
+
+This discrepancy alone demands serious journalistic investigation.
+
+Human Rights Watch warns that the blackout is concealing atrocities and has documented credible reports of large-scale killings since January 8, 2026.
+
+When casualty estimates reach the thousands, the only responsible response is more journalism: independent verification, cross-checking human rights reports, eyewitness testimony, hospital and morgue evidence where possible, and sustained coverage through secure channels.
+
+Please do not allow this crisis to disappear behind the blackout. Public attention can save lives.`;
+
+    // ====== MEDIA TARGETS (1 x TO + up to 4 x BCC per country) ======
+    // Rule used: Letters/Editor if available; otherwise newsroom/contact.
+    const TARGETS = [
+      {
+        label: "🇺🇸 United States",
+        desc: "Letters/Editorial: WaPo, NYT, LA Times, USA Today, New York Post",
+        to: "letters@washpost.com",
+        bcc: "letters@nytimes.com, letters@latimes.com, letters@usatoday.com, letters@nypost.com"
+      },
+      {
+        label: "🇬🇧 United Kingdom",
+        desc: "Letters/Editorial: The Guardian, Telegraph, FT, The Times, The Sun (Boulevard)",
+        to: "guardian.letters@theguardian.com",
+        bcc: "dtletters@telegraph.co.uk, letters.editor@ft.com, letters@thetimes.co.uk, letters@the-sun.co.uk"
+      },
+{
+  label: "🇫🇷 France",
+  desc: "Le Monde, Le Figaro, Libération, Les Echos, Le Parisien (Boulevard)",
+  to: "courrier-des-lecteurs@lemonde.fr",
+  bcc: "direction.redaction@lefigaro.fr, courrier-lecteurs@liberation.fr, serviceclients@lesechos.fr, redaction@leparisien.fr"
+},
+{
+  label: "🇮🇹 Italy",
+  desc: "Corriere, Repubblica, La Stampa, Il Sole 24 Ore, Il Giornale (Boulevard)",
+  to: "lettere@corriere.it",
+  bcc: "lettere@repubblica.it, lettere@lastampa.it, lettere@ilsole24ore.com, redazione@ilgiornale.it"
+},
+
+      {
+        label: "🇩🇪 Germany",
+        desc: "Leserbriefe/Forum: FAZ, SZ, DIE ZEIT, DER SPIEGEL, Tagesspiegel",
+        to: "leserbriefe@faz.de",
+        bcc: "forum@sz.de, leserbriefe@zeit.de, leserbriefe@spiegel.de, leserbriefe@tagesspiegel.de"
+      },
+      {
+        label: "🇵🇱 Poland",
+        desc: "Listy/Kontakt: Gazeta Wyborcza, Rzeczpospolita, Polityka, Fakt (Boulevard), Super Express (Boulevard)",
+        to: "listy@wyborcza.pl",
+        bcc: "redakcja@rp.pl, opinie@polityka.pl, redakcja@fakt.pl, sekretariat_gse@grupazpr.pl"
+      },
+      {
+        label: "🇦🇹 Austria",
+        desc: "Redaktion/Leser: Der Standard, Kurier, Kronen Zeitung (Boulevard), oe24 (Boulevard), Die Presse",
+        to: "redaktion@derstandard.at",
+        bcc: "leser@kurier.at, leser@kronenzeitung.at, leserbriefe@oe24.at, leserbriefe@diepresse.com"
+      },
+      {
+        label: "🇳🇱 Netherlands",
+        desc: "Redactie: de Volkskrant, AD (Boulevard), Het Parool, Trouw, NU.nl",
+        to: "redactie@volkskrant.nl",
+        bcc: "redactie@ad.nl, redactie@parool.nl, secretariaat@trouw.nl, contact@nu.nl"
+      },
+
+{
+  label: "🇨🇦 Canada",
+  desc: "Letters/Editorial: Globe and Mail, Toronto Star, National Post, Vancouver Sun, Montreal Gazette",
+  to: "letters@globeandmail.com",
+  bcc: "lettertoed@thestar.ca, letters@nationalpost.com, sunletters@vancouversun.com, letters@montrealgazette.com"
+},
+{
+  label: "🇪🇸 Spain",
+  desc: "El País, El Mundo, ABC, La Vanguardia, 20 Minutos (Boulevard)",
+  to: "cartas@elpais.es",
+  bcc: "cartas@elmundo.es, cartas@abc.es, cartas@lavanguardia.es, redaccion@20minutos.es"
+},
+
+      {
+        label: "🇨🇭 Switzerland",
+        desc: "Redaktion/Leser: NZZ, Tages-Anzeiger, Blick (Boulevard), 20 Minuten (Boulevard), watson",
+        to: "leserbriefe@nzz.ch",
+        bcc: "redaktion@tages-anzeiger.ch, redaktion@blick.ch, redaktion@20minuten.ch, redaktion@watson.ch"
+      },
+      {
+        label: "🇦🇺 Australia",
+        desc: "Letters/Contact: The Australian, AFR, The West Australian, Canberra Times, Daily Telegraph (Boulevard)",
+        to: "letters@theaustralian.com.au",
+        bcc: "edletters@afr.com.au, letters@wanews.com.au, letters.editor@canberratimes.com.au, tips@dailytelegraph.com.au"
+      },
+{
+  label: "🇸🇪 Sweden",
+  desc: "Dagens Nyheter, Svenska Dagbladet, Aftonbladet (Boulevard), Expressen (Boulevard), Göteborgs-Posten",
+  to: "redaktionen@dn.se",
+  bcc: "redaktionen@svd.se, redaktionen@aftonbladet.se, redaktionen@expressen.se, redaktionen@gp.se"
+},
+{
+  label: "🇨🇿 Czech Republic",
+  desc: "MF DNES, Lidové noviny, Hospodářské noviny, Deník, Blesk (Boulevard)",
+  to: "redakce@idnes.cz",
+  bcc: "redakce@lidovky.cz, redakce@hn.cz, redakce@denik.cz, tip@blesk.cz"
+},
+{
+  label: "🇩🇰 Denmark",
+  desc: "Politiken, Berlingske, Jyllands-Posten, Information, Ekstra Bladet (Boulevard)",
+  to: "redaktion@politiken.dk",
+  bcc: "redaktion@berlingske.dk, redaktion@jp.dk, redaktion@information.dk, redaktion@ekstrabladet.dk"
+},
+
+      {
+        label: "🇳🇿 New Zealand",
+        desc: "Letters: NZ Herald, Stuff (community), The Press, The Post, Otago Daily Times",
+        to: "letters@nzherald.co.nz",
+        bcc: "letterstoeditor@stuff.co.nz, letters@press.co.nz, letters@thepost.co.nz, letters@odt.co.nz"
+      }
+    ];
+
+    const $ = (id) => document.getElementById(id);
+
+    function encodeRFC3986(str) {
+      return encodeURIComponent(str).replace(/[!'()*]/g, c =>
+        '%' + c.charCodeAt(0).toString(16).toUpperCase()
+      );
+    }
+
+    function buildMailto(to, bcc, subject, body) {
+      const params = [];
+      if (bcc && bcc.trim()) params.push("bcc=" + encodeRFC3986(bcc.trim()));
+      if (subject) params.push("subject=" + encodeRFC3986(subject));
+      if (body) params.push("body=" + encodeRFC3986(body));
+      return "mailto:" + encodeRFC3986(to || "") + (params.length ? "?" + params.join("&") : "");
+    }
+
+    function renderButtons() {
+      const wrap = $("buttons");
+      wrap.innerHTML = "";
+
+      for (const t of TARGETS) {
+        const a = document.createElement("a");
+        a.className = "btn";
+        a.href = buildMailto(t.to, t.bcc, SUBJECT, BODY);
+        a.innerHTML = `<div class="title">${t.label}</div><p class="desc">${t.desc}</p>`;
+        wrap.appendChild(a);
+      }
+    }
+
+    function setPreview() {
+      $("subjectBox").value = SUBJECT;
+      $("bodyBox").value = BODY;
+    }
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Copied to clipboard.");
+      } catch {
+        alert("Copy failed. Please copy manually.");
+      }
+    }
+
+    $("copySubject").addEventListener("click", () => copyToClipboard(SUBJECT));
+    $("copyBody").addEventListener("click", () => copyToClipboard(BODY));
+
+    renderButtons();
+    setPreview();
+  </script>
+</body>
+</html>
