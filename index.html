@@ -195,12 +195,17 @@ Please do not allow this crisis to disappear behind the blackout. Public attenti
     $("mailtoLink").href = buildMailto(to, subject, body);
   }
 
-  function selectNewspaper(n) {
-    $("to").value = n.to;
-    $("subject").value = SUBJECT;
-    $("body").value = BODY;
-    refreshMailto();
+  function selectNewspaper(n, openNow=false) {
+  $("to").value = n.to;
+  $("subject").value = SUBJECT;
+  $("body").value = BODY;
+  refreshMailto();
+
+  if (openNow) {
+    window.location.href = $("mailtoLink").href;
   }
+}
+
 
   function renderButtons() {
     const wrap = $("buttons");
