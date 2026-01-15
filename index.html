@@ -217,8 +217,9 @@ Please do not allow this crisis to disappear behind the blackout. Public attenti
       a.href = "#";
       a.addEventListener("click", (e) => {
         e.preventDefault();
-        selectNewspaper(n);
+        selectNewspaper(n, true); // <-- wichtig
       });
+
 
       a.innerHTML = `<div class="title">${n.name} (${n.country})</div>`;
       wrap.appendChild(a);
