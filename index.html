@@ -80,6 +80,17 @@
 
     small{ color: var(--muted); }
     .footer{ margin-top: 10px; color: var(--muted); font-size: 13px; }
+.miniBox{
+  border:1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 10px 0 0;
+  background: #fff;
+  font-size: 14px;
+  color: var(--muted);
+}
+.miniBox strong{ color: var(--text); }
+
   </style>
 </head>
 
@@ -99,6 +110,12 @@
         Each button targets exactly one newsroom address to reduce spam filtering risk.
       </p>
     </div>
+<div class="miniBox">
+  <strong>Note:</strong> Unfortunately, many newspapers do not publish direct newsroom email addresses and can only be reached via official contact forms.
+  That’s why the list of recipients on this page is limited. <strong>For most outlets, you will need to visit their website and use the contact form to request
+  more coverage.</strong>
+</div>
+
 
     <div class="grid" id="buttons" aria-label="Newspaper buttons"></div>
   </div>
@@ -121,9 +138,11 @@
       <button id="copyAll" class="action" type="button">Copy recipient + subject + message</button>
     </div>
 
-    <div class="footer">
-      Tip: If your mail app truncates the body, use “Copy message text” and paste manually.
-    </div>
+<div class="footer">
+  Tip: If your mail app truncates the body, use “Copy message text” and paste manually.<br><br>
+</div>
+
+
   </div>
 
 <script>
